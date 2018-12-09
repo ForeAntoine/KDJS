@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<head>
+ 
+    <meta charset="utf-8" />
+ 
+    <title>Titre de la page</title>
+    <meta name="description" content="Description de la page">
+    <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+
+    <script src="jquery-3.2.1.min.js"></script>
+    <script type="text/javascript">
+    	$(document).ready(function(){
+			$('input[value=Réinitialiser]').click(function(){
+				$("#recipient").html("");
+				var p = document.createElement("p");
+				p.setAttribute("id","void");
+				p.appendChild(document.createTextNode("La page est vide pour l'instant..."));
+				$('#recipient').append(p);
+			});
+			$('form').submit(function(){
+				$('#void').html("");
+				submit = $('#type').val();
+			 	contenu = $('#contenu').val();
+				if(submit == "h1" || submit == "h2" || submit == "h3" || submit == "p"){
+					var neww = document.createElement(submit);
+					var content = document.createTextNode(contenu);
+					neww.appendChild(content);
+					}
+				if(submit == "a"){
+					var neww = document.createElement(submit,{href:contenu});
+					var content = document.createTextNode(contenu);
+					neww.appendChild(content);
+
+				}
+				if(submit =="img"){
+					var neww = document.createElement(submit);
+					neww.setAttribute("src",contenu);
+					neww.setAttribute("alt",contenu);
+				}
+				if(submit == "input:text"){
+					var neww = document.createElement('input');
+					neww.setAttribute("type","text");
+					neww.setAttribute("placeholder",contenu);
+
+				}
+				if(submit == "input:submit"){
+					var neww = document.createElement('input',{type:'button', value:contenu});
+					neww.setAttribute("type","submit");
+					neww.setAttribute("value",contenu);
+				}	
+				if(submit =="label"){
+					var neww = document.createElement(submit,{for:contenu});
+					var content = document.createTextNode(contenu);
+					neww.appendChild(content);
+					
+				}
+				 if($('input[type="checkbox"]').checked == false){
+					 $('#recipient').prepend(neww);
+				 }
+				else{
+					$('#recipient').append(neww);
+				}
+				return false;
+			});
+
+			$('input[value=Générer]').click(function(){
+				var code = document.getElementById('#recipient').innerHTML;
+				alert(code);
+			});
+    	});
+   	</script>
+</head>
+<body>
+	<div id="generateur">
+		<form action="#">
+			<label for="type">Type d'élément</label>
+			<br />
+			<select name="type" id="type">
+				<option value="h1">Titre (h1)</option>
+				<option value="h2">Titre (h2)</option>
+				<option value="h3">Titre (h3)</option>
+				<option value="p">Paragraphe (p)</option>
+				<option value="img">Image (img)</option>
+				<option value="a">Lien (a))</option>
+				<option value="input:text">Champ de texte (input:text)</option>
+				<option value="input:submit">Bouton (input:submit)</option>
+				<option value="label">Label (label)</option>
+			</select>
+			<br />
+			<label for="contenu">Contenu de l'élément</label><br />
+			<input type="text" placeholder="Contenu" id="contenu" name="contenu" />
+			<br />
+			<label for="ajoutAvant">Ajouter avant</label>
+			<input type="checkbox" name="ajoutAvant" id="ajoutAvant" />
+			<br />
+			<input type="submit" value="Ajouter" />
+			<input type="button" value="Réinitialiser" />
+			<input type="button" value="Générer" />
+		</form>
+	</div>
+
+	<div id="recipient">
+		<p id="void">La page est vide pour l'instant...</p>
+	</div>
+
+
+
+
+	<!-- Style -->
+	<style>
+		body{
+			font-family: 'Quicksand', sans-serif;
+			background-color: #FCFCFC;
+		}
+
+		#generateur{
+			float: right;
+			border: 1px solid #C1C2CC;
+			padding: 15px;
+			border-radius: 3px;
+			background: #F1F1F1;
+		}
+
+		#generateur label{ font-weight: bold;}
+		#generateur select{ margin-bottom: 10px; width: 200px; border: 1px solid #666; }
+		#generateur input[type=text]{ margin-bottom: 10px; width: 188px; border: 1px solid #666; padding: 5px; border-radius: 3px;}
+		#generateur input[type=checkbox]{ margin-bottom: 10px; }
+
+		#generateur input[type=submit]{ background-color: #83D833; }
+		#generateur input[type=button]{ background-color: #E80612; }
+		#generateur input[type=button]:last-child{ background-color: #FCC325; }
+		#generateur input[type=submit],
+		#generateur input[type=button]{ color: white; border-radius: 3px; border: none; padding: 9px;}
+		#generateur input[type=submit]:hover,
+		#generateur input[type=button]:hover{ opacity: 0.7; cursor: pointer;}
+
+		#recipient{
+			margin-right: 250px;
+			padding: 15px;
+			border-radius: 3px;
+			border: 1px solid #C1C2CC;
+		}
+	</style>
+</body>
+ 
+</html>

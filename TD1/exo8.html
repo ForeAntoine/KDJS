@@ -1,0 +1,124 @@
+<!-- KIT DE SURVIE JS - IUT INFORMATIQUE BORDEAUX -->
+<!DOCTYPE html>
+<head>
+ 
+    <meta charset="utf-8" />
+ 
+    <title>Exercice 08</title>
+    <meta name="description" content="Description de la page">
+    <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+
+    <style>
+    	body{ font-family: 'Quicksand', sans-serif; }
+	</style>
+
+    <script src="jquery-3.2.1.min.js"></script>
+    <script type="text/javascript">
+    	$(document).ready(function(){
+			$('li:first-child').addClass('orange');
+			$('li:last-child').addClass('violet');
+			$('p').addClass('gras');
+			$('h1,h2,h3,h4').addClass('italique');
+			$('li:first-child').addClass('violet');
+			$('h1').addClass('violet');
+			$('h1').addClass('orange');
+			console.log($('ul').text());
+			console.log($('ul').html());
+			$('p').text('<a href="#">lien</a>');
+			$('p').html('<a href="#">lien</a>');
+			console.log($('input:text[name=nom]').text());
+			console.log($('input:text[name=nom]').val());
+			$('p').append('before'); // ajoute apres le paragraphe
+			$('p').prepend('before'); // ajoute avant le paragraphe
+			$('p').remove(); // enleve paragraphe
+			$('ul').before('before'); // ajoute avant la liste
+			$('ul').after('after'); // ajoute apres la liste
+
+			$('<strong>SUPER!</strong>').appendTo('li');//ajoute apres element liste
+			$('<strong>OK!</strong>').prependTo('li');//ajoute avant element liste
+			$('<strong>HEY!</strong>').insertBefore('li'); //ajoute apres element liste
+			$('<strong>OH!</strong>').insertAfter('li');//ajoute avant element liste
+			$('div').hover(function(){
+				$(this).children('p').each(function(){
+		 		console.log($(this).text()); // indique que c'est du text et affiche la souris en tant que I
+		 		});
+		 	});
+    	});
+   	</script>
+</head>
+<style>
+		.violet{
+			color : purple;
+		}
+		.orange{
+			color : orange;
+		}
+		.gras{
+			font-weight: bold;
+		}
+		.italique{
+			font-style: italic;
+		}
+	</style>
+<body>
+
+	<img src="https://blog.netapsys.fr/wp-content/uploads/2016/07/jquery.gif" height="100" style="float:right" />
+	<h1>Kit de Survie Javascript</h1>
+	<h3>Page d'exercice pour la manipulation de jQuery</h3>
+
+
+	<div class="entete">
+		<p class="paragraphe">Ce fichier sert à la manipulation du DOM à l'aide de jQuery</p>
+		<p>Il est écrit en HTML, et permet d'y écrire directement le code jQuery dans son entête</p>
+
+		<p class="paragraphe">Il contient des listes d'éléments comme celle-ci:</p>
+		<ul id="liste01" class="liste">
+			<li>Elément #1</li>
+			<li>Elément #2</li>
+			<li>Elément #3</li>
+			<li>Elément #4</li>
+		</ul>
+		<p>Ou celle-la:</p>
+		<ul id="liste02" class="liste">
+			<li><a href="#">Lien #1</a></li>
+			<li><a href="#">Lien #2</a></li>
+		</ul>
+		<p>Et enfin celle-la:</p>
+		<ul id="liste03" class="liste">
+			<li>
+				<img src="https://www.quizz.biz/uploads/quizz/796095/6_Grt93.jpg" height=100 />
+			</li>
+			<li>
+				<img src="https://i.imgur.com/kMFAHYa.jpg" height=100 />
+			</li>
+			<li>
+				<img src="https://www.quizz.biz/uploads/quizz/796095/10_XR1XO.jpg" height=100 />
+			</li>
+		</ul>
+	</div>
+
+
+	<div class="formulaire">
+		<h4>Un formulaire</h4>
+		<form action="#" method="get">
+			<input type="text" name="nom" placeholder="Nom" value="Dupont" />
+			<br />
+			<input type="text" name="prenom" placeholder="Prénom" />
+			<br />
+			<input type="number" name="age" placeholder="Age" />
+			<br />
+			<label for="langage">Langage préféré</label><br />
+			<select name="langage" id="langage">
+				<option>C++</option>
+				<option>Javascript</option>
+				<option>Java</option>
+			</select>
+			<br />
+			<input type="submit" />
+		</form>
+	</div>
+
+
+</body>
+ 
+</html>

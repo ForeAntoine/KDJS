@@ -1,0 +1,49 @@
+<!-- KIT DE SURVIE JS - IUT INFORMATIQUE BORDEAUX -->
+<!DOCTYPE html>
+<head>
+ 
+    <meta charset="utf-8" />
+ 
+    <title>Exercice 14</title>
+    <meta name="description" content="Description de la page">
+    <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+
+    <style>
+    	body{ font-family: 'Quicksand', sans-serif; }
+	</style>
+
+    <script src="jquery-3.2.1.min.js"></script>
+    <script type="text/javascript">
+        
+    	$(document).ready(function(){
+    		$('form').submit(function(){
+                var nouvel_objet = {
+                    Nom: $('input[name=nom]').val(),
+                    Prenom:$('input[name=prenom]').val(),
+                    Age:$('input[name=age]').val(),
+                    type: $('#type').val(),
+                    Description:$('input[name=description]').val()
+                }
+                console.log("Nom: "+nouvel_objet.Nom+"\n Prenom: "+nouvel_objet.Prenom+"\n Age: "+nouvel_objet.Age+
+                "\n Type: "+nouvel_objet.type+"\n Description: "+nouvel_objet.Description);
+                return false;
+            })
+           
+    	});
+   	</script>
+</head>
+<body>
+    <form action="#">
+        <input type="text" name="nom" placeholder="Nom"/><br>
+        <input type="text" name="prenom" placeholder="Prenom"/><br>
+        <input type="number" name="age" placeholder="Age"/><br>
+        <select name="type" id="type">
+            <option value="M">M</option>
+            <option value="F">F</option>
+        </select><br>
+        <input type="text" name="description" placeholder="Description"/><br>
+        <input type="submit" value="Valider"/><br>
+    </form>
+</body>
+ 
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Kit de Survie JS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="jquery-ui-1.12.1/jquery-ui.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="jquery-ui-1.12.1/jquery-ui.min.js"></script>
+    <script>
+        //ORDRE DE LA LISTE
+        function order(){
+            var listOrder="Ordre de la liste : \n";
+            $('li').text(function(index,actuel) {
+                listOrder += (index+1)+" : "+actuel.substring(1)+"\n";
+            });
+            alert(listOrder);
+        }
+
+        //PLUGIN QUI GROSSI LA POLICE
+        $(function($){
+            $.fn.biggerHover=function(){
+                this.hover(function(){
+                    this.addClass("fontSizeBigger");
+                });
+            }
+        });
+
+        //COORDONNÉES ET DRAGGABLE DE L'ÉLÉMENT ROUGE
+        var coordx;
+        var coordy;
+        $(function() {
+            $( "#mousedrag" ).draggable({
+                create: function(event,ui){
+                    console.log("drag");
+                },
+                drag: function(event, ui) {
+                    coordx='x = '+ui.position.top;
+                    coordy='y= '+ui.position.left;
+                    $('#coordx').val(coordx);
+                    $('#coordy').val(coordy);
+                },
+                containment : "parent"
+            });
+        });
+
+        //SORTABLE DE LA LISTE
+        $(function(){
+            $( "#sortable" ).sortable();
+            $( "#sortable" ).disableSelection();
+        });
+
+    </script>
+    <style>
+        .fontSizeBigger{
+            font-size: 10%;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <fieldset>
+            <div class="ui-state-error ui-corner-all" id="mousedrag">
+                draggable
+            </div>
+        </fieldset>
+    </div>
+    <input type="text" disabled="disabled" id="coordx"/>
+    <input type="text" disabled="disabled" id="coordy"/>
+
+    <ul id="sortable">
+        <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>>Element 1</li>
+        <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>>Element 2</li>
+        <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>>Element 3</li>
+        <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>>Element 4</li>
+        <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>>Element 5</li>
+        <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>>Element 6</li>
+    </ul>
+
+    <button onclick="order()">Order</button>
+</body>
+</html>
